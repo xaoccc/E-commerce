@@ -165,18 +165,15 @@ main > section:last-child > p {
 /* Add to cart section */
 .cart-section {
     align-items: center;
-    justify-content: space-between;
-
-
-}
-.cart-section button img {
-    width: 1rem;
-    height: 1rem;
-    aspect-ratio: 1;
+    justify-content: space-between;    
 }
 
 .cart-section button:first-child {
     flex: 4;
+    padding: 1rem 2rem;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0.75rem;
 }
 
 .add-cart {
