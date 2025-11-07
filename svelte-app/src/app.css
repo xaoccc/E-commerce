@@ -59,7 +59,7 @@ header, main {
 }
 
 header {
-    
+    position: relative;
     align-items: center;
     margin: 2.5rem auto;
     padding-bottom: 2rem;
@@ -104,11 +104,16 @@ main > section .row.spread {
 
 main > section .row.spread img {
     width: 20%;
+    border: 1px solid transparent;
 }
 
 main > section .row.spread img:hover {
-    opacity: 0.5;
     cursor: pointer;
+}
+
+main > section .row.spread img.selectedItem{
+    opacity: 0.5;
+    border: 1px solid hsl(26, 100%, 55%);    
 }
 
 /* Product info section */
@@ -168,15 +173,16 @@ main > section:last-child > p {
     justify-content: space-between;    
 }
 
-.cart-section button:first-child {
+.cart-section > div {
     flex: 4;
     padding: 1rem 2rem;
     align-items: center;
     justify-content: space-between;
     border-radius: 0.75rem;
+    background-color: hsl(223, 64%, 98%);
 }
 
-.add-cart {
+.cart-section > button {
     background: url('icon-cart.svg') no-repeat  hsl(26, 100%, 55%) ;
     background-position:  calc(50% - 3rem) center;
     background-size: 1.2rem;
@@ -184,6 +190,56 @@ main > section:last-child > p {
     border-radius: 0.75rem;
     flex: 6;
     text-align: center;    
+}
+
+.cart-section > div > button {
+    height: 1rem;
+    width: 1rem;
+}
+.remove-product {
+    background: url('icon-minus.svg') no-repeat center;
+}
+.add-product {
+    background: url('icon-plus.svg') no-repeat center;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+/* Cart */
+.cart {
+    position: absolute;
+    right: 0;
+    top: 4rem;
+    padding: 1rem 0;
+    box-shadow: 0 3px 6px 2px hsl(220, 14%, 75%);
+    border-radius: 0.75rem;
+    width: 22.5rem;
+    background-color: #fff;
+}
+
+.cart > p {
+    font-weight: 700;
+    padding: 0 1rem 2rem;
+}
+
+.product-data-container {
+    padding: 2rem 1rem;
+}
+
+.product-data-container img {
+    width: 3rem;
+    border-radius: 0.3rem;
+}
+
+.product-data-container div p {
+    color: hsl(219, 9%, 45%);
+}
+
+.bold {
+    color: #000;
+    font-weight: 700;
 }
 
 

@@ -1,9 +1,13 @@
-<script>
-    let products = $state([]);
+<script lang="ts">
+    import Cart from "./lib/Cart.svelte";
+    let products = $state({});
     let qty = $state(0);
     let imgNum = $state(0);
+    let showCartBox = $state(false);
+
     // To Do: Use JSON
-    const defaultProduct = {
+    const defaultProduct = $state({
+        id: 1,
         company: "Sneaker Company",
         title: "Fall Limited Edition Sneakers",
         description: `These low-profile sneakers are your perfect casual wear companion. 
@@ -18,8 +22,32 @@
             { length: 4 },
             (_, i) => `image-product-${i + 1}-thumbnail.jpg`,
         ),
-    };
+        qty: 0
+    });
     let currentProduct = $state(defaultProduct);
+    let cart = $state({});
+
+    function addProduct(id) {
+        if (!cart[id]) {
+            cart[id] = 0;
+        }
+        cart[id] += 1;
+        qty += 1;
+        currentProduct.qty += 1;
+    }
+    function removeProduct(id) {
+        if (cart[id] && cart[id] > 0) {
+            cart[id] -= 1;
+            qty -= 1;
+            currentProduct.qty -= 1;
+        }
+    }
+
+    function showCart() {
+        showCartBox = !showCartBox;
+    }
+
+    products[1] = defaultProduct;
 </script>
 
 <header class="row spread">
@@ -36,9 +64,12 @@
         </nav>
     </div>
     <div class="right row g2">
-        <button aria-label="cart button" class="cart-btn"></button>
+        <button onclick={() => showCart()} aria-label="cart button" class="cart-btn"></button>
         <img src="image-avatar.png" alt="avatar" class="profile-pic" />
     </div>
+    {#if showCartBox}
+        <Cart {cart} {products} />
+    {/if}
 </header>
 <main class="row">
     <section>
@@ -46,8 +77,10 @@
         <div class="row spread">
             {#each currentProduct.smallImages as smallImg, i}
                 <img
+                    aria-hidden="true"
                     src={smallImg}
-                    alt=""
+                    alt={`${currentProduct.title} Image-${i}`}
+                    class:selectedItem={imgNum === i}
                     onclick={() => {
                         imgNum = i;
                     }}
@@ -69,11 +102,19 @@
         </div>
         <div class="old-price">${currentProduct.old_price.toFixed(2)}</div>
         <div class="cart-section row g1">
-            <button class="row g1">
-                <img src="icon-minus.svg" alt="icon minus" />
+            <div class="row g1">
+                <button
+                    onclick={() => removeProduct(currentProduct.id)}
+                    class="remove-product"
+                    aria-label="Remove product"
+                ></button>
                 <p>{qty}</p>
-                <img src="icon-plus.svg" alt="icon plus" />
-            </button>
+                <button
+                    onclick={() => addProduct(currentProduct.id)}
+                    class="add-product"
+                    aria-label="Add product"
+                ></button>
+            </div>
             <button class="add-cart">Add to cart</button>
         </div>
     </section>
