@@ -5,7 +5,6 @@
     let imgNum = $state(0);
     let showCartBox = $state(false);
 
-    // To Do: Use JSON
     const defaultProduct = $state({
         id: 1,
         company: "Sneaker Company",
@@ -25,22 +24,20 @@
         qty: 0
     });
     let currentProduct = $state(defaultProduct);
-    let cart = $state({});
+    let cart = $state<Record<string, number>>({});
 
-    function addProduct(id) {
-        if (!cart[id]) {
-            cart[id] = 0;
-        }
-        cart[id] += 1;
+    function addProduct() {
         qty += 1;
         currentProduct.qty += 1;
     }
-    function removeProduct(id) {
-        if (cart[id] && cart[id] > 0) {
-            cart[id] -= 1;
-            qty -= 1;
-            currentProduct.qty -= 1;
-        }
+    function removeProduct() {
+        qty -= 1;
+        currentProduct.qty -= 1;
+
+    }
+
+    function addToCart(id) {
+        cart[id] = qty;
     }
 
     function showCart() {
@@ -68,7 +65,7 @@
         <img src="image-avatar.png" alt="avatar" class="profile-pic" />
     </div>
     {#if showCartBox}
-        <Cart {cart} {products} />
+        <Cart bind:cart={cart} bind:products={products} />
     {/if}
 </header>
 <main class="row">
@@ -104,18 +101,18 @@
         <div class="cart-section row g1">
             <div class="row g1">
                 <button
-                    onclick={() => removeProduct(currentProduct.id)}
+                    onclick={() => removeProduct()}
                     class="remove-product"
                     aria-label="Remove product"
                 ></button>
-                <p>{qty}</p>
+                <p>{currentProduct.qty ? currentProduct.qty : "0" }</p>
                 <button
-                    onclick={() => addProduct(currentProduct.id)}
+                    onclick={() => addProduct()}
                     class="add-product"
                     aria-label="Add product"
                 ></button>
             </div>
-            <button class="add-cart">Add to cart</button>
+            <button class="add-cart" onclick={() => addToCart(currentProduct.id)}>Add to cart</button>
         </div>
     </section>
 </main>

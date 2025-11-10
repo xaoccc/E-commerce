@@ -226,6 +226,7 @@ button:hover {
 
 .product-data-container {
     padding: 2rem 1rem;
+    align-items: center;
 }
 
 .product-data-container img {
@@ -240,6 +241,21 @@ button:hover {
 .bold {
     color: #000;
     font-weight: 700;
+}
+
+.remove-item {
+    height: 1rem;
+    width: 1rem;
+    background: url('icon-delete.svg') no-repeat center;
+}
+
+.checkout-btn {
+    background-color: hsl(26, 100%, 55%);
+    padding: 1.25rem;
+    width: calc(100% - 2rem);
+    border-radius: 0.75rem;
+    margin: 1rem;
+    text-align: center;
 }
 
 

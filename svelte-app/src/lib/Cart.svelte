@@ -1,6 +1,13 @@
 <script lang="ts">
-    let { cart, products } = $props();
-    const cartIds = Object.keys(cart);
+    let { cart = $bindable(), products = $bindable() } = $props<{
+        cart: Record<string, number>;
+        products: Record<string, number>;
+    }>();
+    ;
+    const cartIds = $derived(Object.keys(cart));
+    function removeItem(product: string) {
+        delete cart[product];
+    }
 </script>
 
 <div class="cart">
@@ -25,7 +32,13 @@
                         >
                     </p>
                 </div>
+                <button
+                    aria-label="remove item"
+                    class="remove-item"
+                    onclick={() => removeItem(product)}
+                ></button>
             </div>
+            <button class="checkout-btn">Chechout</button>
         {/each}
     {:else}
         <p>Your cart is empty</p>
