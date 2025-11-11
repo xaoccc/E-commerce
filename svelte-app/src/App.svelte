@@ -52,16 +52,18 @@
         <img src="logo.svg" alt="logo" class="logo" />
         <nav>
             <ul class="row g2">
-                <li><a href="#">Collections</a></li>
-                <li><a href="#">Men</a></li>
-                <li><a href="#">Women</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href=".">Collections</a></li>
+                <li><a href=".">Men</a></li>
+                <li><a href=".">Women</a></li>
+                <li><a href=".">About</a></li>
+                <li><a href=".">Contact</a></li>
             </ul>
         </nav>
     </div>
     <div class="right row g2">
-        <button onclick={() => showCart()} aria-label="cart button" class="cart-btn"></button>
+        <button onclick={() => showCart()} aria-label="cart button" class="cart-btn">
+            <small>{cart[currentProduct.id]}</small>
+        </button>
         <img src="image-avatar.png" alt="avatar" class="profile-pic" />
     </div>
     {#if showCartBox}

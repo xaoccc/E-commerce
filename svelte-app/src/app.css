@@ -1,5 +1,6 @@
 :root {
     font-family: 'Kumbh Sans', sans-serif;
+    color: hsl(220, 13%, 13%);
 }
 
 /* Prevent font size inflation */
@@ -63,7 +64,30 @@ header {
     align-items: center;
     margin: 2.5rem auto;
     padding-bottom: 2rem;
-    border-bottom: 1px solid hsl(220, 14%, 75%);
+    border-bottom: 1px solid #E9E9E9;
+}
+
+nav > ul a {
+    color: hsl(219, 9%, 45%);
+    position: relative;
+}
+
+nav > ul a:hover {
+    color: hsl(220, 13%, 13%);
+}
+
+nav > ul a::after {
+    content: "";
+    display: none;
+    height: 4px;
+    width: 100%;
+    background-color: hsl(26, 100%, 55%);
+    position: absolute;
+    top: calc(4rem - 2px);
+}
+
+nav > ul a:hover::after {
+    display: block;
 }
 
 .left {
@@ -76,11 +100,31 @@ header {
 
 .profile-pic {
     width: 3rem;
+    border: 2px solid transparent;
+    border-radius: 50%;
+}
+
+.profile-pic:hover {
+    cursor: pointer;
+    border: 2px solid hsla(26, 100%, 55%, 0.7);
 }
 
 .cart-btn {
     background: url('icon-cart.svg') no-repeat center;
     width: 22px;
+    position: relative;
+}
+
+.cart-btn small {
+    position: absolute;
+    top: 0.75rem;
+    right: -2px;
+    font-size: 0.5rem;
+    padding: 0 0.25rem;
+    font-family: inherit;
+    background-color: hsl(26, 100%, 55%);
+    border-radius: 0.5rem;
+    color: #fff;
 }
 
 main {
@@ -109,6 +153,7 @@ main > section .row.spread img {
 
 main > section .row.spread img:hover {
     cursor: pointer;
+    opacity: 0.5;
 }
 
 main > section .row.spread img.selectedItem{
@@ -155,7 +200,7 @@ main > section:last-child > p {
 
 .discount {
     color: #fff;
-    background: #000;
+    background: hsl(220, 13%, 13%);
     padding: 0.25rem 0.75rem;
     border-radius: 0.3rem;
 }
@@ -182,7 +227,7 @@ main > section:last-child > p {
     background-color: hsl(223, 64%, 98%);
 }
 
-.cart-section > button {
+.add-cart {
     background: url('icon-cart.svg') no-repeat  hsl(26, 100%, 55%) ;
     background-position:  calc(50% - 3rem) center;
     background-size: 1.2rem;
@@ -207,21 +252,36 @@ button:hover {
     cursor: pointer;
 }
 
+.add-cart:hover {
+    opacity: 0.7;
+}
+
 /* Cart */
 .cart {
     position: absolute;
-    right: 0;
+    right: -5rem;
     top: 4rem;
     padding: 1rem 0;
-    box-shadow: 0 3px 6px 2px hsl(220, 14%, 75%);
+    box-shadow: 0px 13px 20px 7px hsla(0, 0%, 0%, 25%);
     border-radius: 0.75rem;
     width: 22.5rem;
     background-color: #fff;
 }
 
+.cart hr {
+    border: none;
+    border-bottom: solid 1px #E9E9E9;  
+}
+
 .cart > p {
     font-weight: 700;
-    padding: 0 1rem 2rem;
+    padding: 0 1.5rem 1rem;
+}
+
+.cart > p:last-child {
+    padding: 5rem 1rem;
+    color: hsl(219, 9%, 45%);
+    text-align: center;
 }
 
 .product-data-container {
@@ -239,7 +299,7 @@ button:hover {
 }
 
 .bold {
-    color: #000;
+    color: hsl(220, 13%, 13%);
     font-weight: 700;
 }
 
