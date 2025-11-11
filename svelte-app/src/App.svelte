@@ -1,9 +1,11 @@
 <script lang="ts">
     import Cart from "./lib/Cart.svelte";
+    import Lightbox from "./lib/Lightbox.svelte";
     let products = $state({});
     let qty = $state(0);
     let imgNum = $state(0);
     let showCartBox = $state(false);
+    let showLightBox = $state(false);
 
     const defaultProduct = $state({
         id: 1,
@@ -46,7 +48,9 @@
 
     products[1] = defaultProduct;
 </script>
-
+{#if showLightBox}
+    <Lightbox bind:showLightBox={showLightBox}/>
+{/if}
 <header class="row spread">
     <div class="left row g2">
         <img src="logo.svg" alt="logo" class="logo" />
@@ -72,7 +76,7 @@
 </header>
 <main class="row">
     <section>
-        <img src={currentProduct.bigImages[imgNum]} alt="" />
+        <input type="image" src={currentProduct.bigImages[imgNum]} onclick={() => showLightBox = !showLightBox} alt={`${currentProduct.title} Big Image`} name="saveForm" class="btTxt submit" id="saveForm" />
         <div class="row spread">
             {#each currentProduct.smallImages as smallImg, i}
                 <img

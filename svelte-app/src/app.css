@@ -62,8 +62,8 @@ header, main {
 header {
     position: relative;
     align-items: center;
-    margin: 2.5rem auto;
-    padding-bottom: 2rem;
+    margin: 0 auto;
+    padding: 2.5rem 0;
     border-bottom: 1px solid #E9E9E9;
 }
 
@@ -137,7 +137,7 @@ main > section {
     flex: 1;
 }
 
-main > section > img, main > section > div > img {
+main > section > input, main > section > div > img {
     width: 100%;
     border-radius: 1rem;
 }
@@ -316,6 +316,16 @@ button:hover {
     border-radius: 0.75rem;
     margin: 1rem;
     text-align: center;
+}
+
+/* Lightbox */
+.lightbox {
+    background-color: hsla(0, 0%, 0%, 75%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 1000;
 }
 
 
