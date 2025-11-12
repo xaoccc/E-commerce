@@ -137,7 +137,7 @@ main > section {
     flex: 1;
 }
 
-main > section > input, main > section > div > img {
+main > section > input {
     width: 100%;
     border-radius: 1rem;
 }
@@ -146,17 +146,18 @@ main > section .row.spread {
     margin-top: 2.25rem;
 }
 
-main > section .row.spread img {
+.small-img-container img {
     width: 20%;
     border: 1px solid transparent;
+    border-radius: 1rem;
 }
 
-main > section .row.spread img:hover {
+.small-img-container img:hover {
     cursor: pointer;
     opacity: 0.5;
 }
 
-main > section .row.spread img.selectedItem{
+.small-img-container img.selectedItem{
     opacity: 0.5;
     border: 1px solid hsl(26, 100%, 55%);    
 }
@@ -260,7 +261,7 @@ button:hover {
 .cart {
     position: absolute;
     right: -5rem;
-    top: 4rem;
+    top: 5rem;
     padding: 1rem 0;
     box-shadow: 0px 13px 20px 7px hsla(0, 0%, 0%, 25%);
     border-radius: 0.75rem;
@@ -326,6 +327,43 @@ button:hover {
     height: 100%;
     display: flex;
     z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.lightbox > section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 40%;
+
+}
+
+.lightbox .main-img, .lightbox .small-img-container {
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.lightbox .small-img-container {
+    justify-content: space-between;
+}
+
+.lightbox .small-img-container img::after {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+}
+
+.lightbox button {
+    margin-left: auto;
+    background: url('icon-close.svg') no-repeat center;
+    background-size: contain;
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 

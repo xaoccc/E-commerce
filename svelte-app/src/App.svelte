@@ -49,7 +49,7 @@
     products[1] = defaultProduct;
 </script>
 {#if showLightBox}
-    <Lightbox bind:showLightBox={showLightBox}/>
+    <Lightbox bind:showLightBox={showLightBox} {currentProduct}/>
 {/if}
 <header class="row spread">
     <div class="left row g2">
@@ -76,8 +76,8 @@
 </header>
 <main class="row">
     <section>
-        <input type="image" src={currentProduct.bigImages[imgNum]} onclick={() => showLightBox = !showLightBox} alt={`${currentProduct.title} Big Image`} name="saveForm" class="btTxt submit" id="saveForm" />
-        <div class="row spread">
+        <input type="image" src={currentProduct.bigImages[imgNum]} onclick={() => showLightBox = !showLightBox} alt={`${currentProduct.title} Big Image`} name="saveForm" class="main-img" id="saveForm" />
+        <div class="row spread small-img-container">
             {#each currentProduct.smallImages as smallImg, i}
                 <img
                     aria-hidden="true"
