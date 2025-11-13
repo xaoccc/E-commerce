@@ -337,7 +337,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 40%;
+    max-width: 35%;
 
 }
 
@@ -348,6 +348,8 @@ button:hover {
 
 .lightbox .small-img-container {
     justify-content: space-between;
+    margin-top: 2rem;
+
 }
 
 .lightbox .small-img-container img::after {
@@ -358,12 +360,41 @@ button:hover {
     background-color: #fff;
 }
 
-.lightbox button {
+.lightbox > section > button {
     margin-left: auto;
     background: url('icon-close.svg') no-repeat center;
     background-size: contain;
     height: 1.5rem;
     width: 1.5rem;
+}
+
+.main-img-container {
+    align-items: center;
+    position: relative;
+}
+
+.btn-prev, .btn-next {    
+    padding: 2rem;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.btn-prev {
+    background: url('icon-previous.svg') no-repeat center, white;
+    left: -2rem;
+}
+
+.btn-next {
+    background: url('icon-next.svg') no-repeat center, white;
+    right: -2rem;
+}
+
+.btn-prev:hover {
+    background: url('icon-previous-hover.svg') no-repeat center, white;
+}
+
+.btn-next:hover {
+    background: url('icon-next-hover.svg') no-repeat center, white;
 }
 
 
