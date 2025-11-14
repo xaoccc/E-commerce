@@ -1,9 +1,19 @@
 <script lang="ts">
+    interface Product {
+        id: number;
+        company: string;
+        title: string;
+        description: string;
+        old_price: number;
+        discount: number;
+        qty: number;
+        bigImages: any[];
+        smallImages: any[];
+    }
     let { cart = $bindable(), products = $bindable() } = $props<{
         cart: Record<string, number>;
-        products: Record<string, number>;
+        products: Record<string, Product>;
     }>();
-    ;
     const cartIds = $derived(Object.keys(cart));
     function removeItem(product: string) {
         delete cart[product];

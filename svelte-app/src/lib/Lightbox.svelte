@@ -39,6 +39,7 @@
 
         <div class="row g2 small-img-container">
             {#each currentProduct.smallImages as smallImg, i}
+            <div class="lb-img-bg row">
                 <img
                     aria-hidden="true"
                     src={smallImg}
@@ -48,6 +49,9 @@
                         imgNum = i;
                     }}
                 />
+
+            </div>
+                
             {/each}
         </div>
     </section>

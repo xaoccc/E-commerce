@@ -1,41 +1,49 @@
 <script lang="ts">
     import Cart from "./lib/Cart.svelte";
     import Lightbox from "./lib/Lightbox.svelte";
-    let products = $state({});
+    import { onMount } from "svelte";
+    import data from "./data/db.json";
+    let products = $state(data);
     let qty = $state(0);
     let imgNum = $state(0);
     let showCartBox = $state(false);
     let showLightBox = $state(false);
+    let width = $state(0);
 
-    const defaultProduct = $state({
-        id: 1,
-        company: "Sneaker Company",
-        title: "Fall Limited Edition Sneakers",
-        description: `These low-profile sneakers are your perfect casual wear companion. 
-        Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.`,
-        old_price: 250,
-        discount: 0.5,
-        bigImages: Array.from(
-            { length: 4 },
-            (_, i) => `image-product-${i + 1}.jpg`,
-        ),
-        smallImages: Array.from(
-            { length: 4 },
-            (_, i) => `image-product-${i + 1}-thumbnail.jpg`,
-        ),
-        qty: 0
+    // Reactive window size check
+    onMount(() => {
+        width = window.innerWidth;
+        const handleResize = () => {
+            width = window.innerWidth;
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
     });
+
+    data[0].bigImages = Array.from(
+        { length: 4 },
+        (_, i) => `image-product-${i + 1}.jpg`,
+    );
+    data[0].smallImages = Array.from(
+        { length: 4 },
+        (_, i) => `image-product-${i + 1}-thumbnail.jpg`,
+    );
+
+    const defaultProduct = $state(data[0]);
     let currentProduct = $state(defaultProduct);
     let cart = $state<Record<string, number>>({});
 
     function addProduct() {
         qty += 1;
         currentProduct.qty += 1;
-    }
+        products[0].qty += 1;
+     }
     function removeProduct() {
-        qty -= 1;
-        currentProduct.qty -= 1;
-
+        if (qty > 0) {
+            qty -= 1;
+            currentProduct.qty -= 1;
+            products[0].qty -= 1;
+        }
     }
 
     function addToCart(id) {
@@ -46,10 +54,11 @@
         showCartBox = !showCartBox;
     }
 
-    products[1] = defaultProduct;
 </script>
-{#if showLightBox}
-    <Lightbox bind:showLightBox={showLightBox} {currentProduct}/>
+
+<!-- We need a lightbox only for desktop display -->
+{#if showLightBox && width > 1024}
+    <Lightbox bind:showLightBox {currentProduct} />
 {/if}
 <header class="row spread">
     <div class="left row g2">
@@ -65,20 +74,32 @@
         </nav>
     </div>
     <div class="right row g2">
-        <button onclick={() => showCart()} aria-label="cart button" class="cart-btn">
+        <button
+            onclick={() => showCart()}
+            aria-label="cart button"
+            class="cart-btn"
+        >
             <small>{cart[currentProduct.id]}</small>
         </button>
         <img src="image-avatar.png" alt="avatar" class="profile-pic" />
     </div>
     {#if showCartBox}
-        <Cart bind:cart={cart} bind:products={products} />
+        <Cart bind:cart bind:products />
     {/if}
 </header>
 <main class="row">
     <section>
-        <input type="image" src={currentProduct.bigImages[imgNum]} onclick={() => showLightBox = !showLightBox} alt={`${currentProduct.title} Big Image`} name="saveForm" class="main-img" id="saveForm" />
+        <input
+            type="image"
+            src={currentProduct.bigImages[imgNum]}
+            onclick={() => (showLightBox = !showLightBox)}
+            alt={`${currentProduct.title} Big Image`}
+            name="saveForm"
+            class="main-img"
+            id="saveForm"
+        />
         <div class="row spread small-img-container">
-            {#each currentProduct.smallImages as smallImg, i}
+            {#each currentProduct.smallImages as smallImg, i}            
                 <img
                     aria-hidden="true"
                     src={smallImg}
@@ -111,14 +132,17 @@
                     class="remove-product"
                     aria-label="Remove product"
                 ></button>
-                <p>{currentProduct.qty ? currentProduct.qty : "0" }</p>
+                <p>{currentProduct.qty ? currentProduct.qty : "0"}</p>
                 <button
                     onclick={() => addProduct()}
                     class="add-product"
                     aria-label="Add product"
                 ></button>
             </div>
-            <button class="add-cart" onclick={() => addToCart(currentProduct.id)}>Add to cart</button>
+            <button
+                class="add-cart"
+                onclick={() => addToCart(currentProduct.id)}>Add to cart</button
+            >
         </div>
     </section>
 </main>
