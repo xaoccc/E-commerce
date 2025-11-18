@@ -8,6 +8,7 @@
     let imgNum = $state(0);
     let showCartBox = $state(false);
     let showLightBox = $state(false);
+    let mobileView = $state(false);
     let width = $state(0);
 
     // Reactive window size check
@@ -15,8 +16,18 @@
         width = window.innerWidth;
         const handleResize = () => {
             width = window.innerWidth;
+            if (width < 1024) {
+                showLightBox = true;
+                mobileView = true;
+            } else {
+                showLightBox = false;
+                mobileView = false;
+            }
         };
+        // On mount we check the width
+        handleResize();
         window.addEventListener("resize", handleResize);
+
         return () => window.removeEventListener("resize", handleResize);
     });
 
@@ -37,7 +48,7 @@
         qty += 1;
         currentProduct.qty += 1;
         products[0].qty += 1;
-     }
+    }
     function removeProduct() {
         if (qty > 0) {
             qty -= 1;
@@ -53,11 +64,10 @@
     function showCart() {
         showCartBox = !showCartBox;
     }
-
 </script>
 
 <!-- We need a lightbox only for desktop display -->
-{#if showLightBox && width > 1024}
+{#if showLightBox && !mobileView}
     <Lightbox bind:showLightBox {currentProduct} />
 {/if}
 <header class="row spread">
@@ -87,30 +97,35 @@
         <Cart bind:cart bind:products />
     {/if}
 </header>
-<main class="row">
+<main class={mobileView ? "col mobile" : "row"}>
     <section>
-        <input
-            type="image"
-            src={currentProduct.bigImages[imgNum]}
-            onclick={() => (showLightBox = !showLightBox)}
-            alt={`${currentProduct.title} Big Image`}
-            name="saveForm"
-            class="main-img"
-            id="saveForm"
-        />
-        <div class="row spread small-img-container">
-            {#each currentProduct.smallImages as smallImg, i}            
-                <img
-                    aria-hidden="true"
-                    src={smallImg}
-                    alt={`${currentProduct.title} Image-${i}`}
-                    class:selectedItem={imgNum === i}
-                    onclick={() => {
-                        imgNum = i;
-                    }}
-                />
-            {/each}
-        </div>
+        {console.log(mobileView)}
+        {#if !mobileView}
+            <input
+                type="image"
+                src={currentProduct.bigImages[imgNum]}
+                onclick={() => (showLightBox = !showLightBox)}
+                alt={`${currentProduct.title} Big Image`}
+                name="saveForm"
+                class="main-img"
+                id="saveForm"
+            />
+            <div class="row spread small-img-container">
+                {#each currentProduct.smallImages as smallImg, i}
+                    <img
+                        aria-hidden="true"
+                        src={smallImg}
+                        alt={`${currentProduct.title} Image-${i}`}
+                        class:selectedItem={imgNum === i}
+                        onclick={() => {
+                            imgNum = i;
+                        }}
+                    />
+                {/each}
+            </div>
+        {:else}
+            <Lightbox bind:showLightBox bind:mobileView {currentProduct} />
+        {/if}
     </section>
     <section>
         <h2>{currentProduct.company}</h2>
@@ -125,7 +140,7 @@
             <div class="discount">{currentProduct.discount * 100}%</div>
         </div>
         <div class="old-price">${currentProduct.old_price.toFixed(2)}</div>
-        <div class="cart-section row g1">
+        <div class="cart-section {mobileView ? "col" : "row"} g1">
             <div class="row g1">
                 <button
                     onclick={() => removeProduct()}

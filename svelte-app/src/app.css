@@ -44,6 +44,11 @@ li {
     flex-direction: row;
 }
 
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
 .spread {
     justify-content: space-between;
 }
@@ -134,6 +139,10 @@ main {
     margin: 0 auto;
     padding: 3rem;
     gap: 7rem;
+}
+
+main.mobile {
+    padding: 3rem 0;
 }
 
 main>section {
@@ -250,6 +259,7 @@ main>section:last-child>p {
     justify-content: space-between;
     border-radius: 0.75rem;
     background-color: hsl(223, 64%, 98%);
+    width: 100%;
 }
 
 .add-cart {
@@ -259,6 +269,7 @@ main>section:last-child>p {
     padding: 1rem 1rem 1rem 3rem;
     border-radius: 0.75rem;
     flex: 6;
+    width: 100%;
     text-align: center;
 }
 
@@ -358,28 +369,37 @@ button:hover {
     flex-direction: column;
 }
 
-.lightbox>section {
+.lightbox>section, .lightbox-mobile>section {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    max-width: 35%;
+    flex-direction: column;   
+}
 
+.lightbox>section {
+    max-width: 35%;
+}
+
+.lightbox-mobile>section {
+    max-width: 100%;
+    width: 100%;
 }
 
 .lightbox .main-img,
-.lightbox .small-img-container {
+.lightbox .small-img-container,
+.lightbox-mobile .main-img,
+.lightbox-mobile .small-img-container {
     width: 100%;
     border-radius: 1rem;
 }
 
-.lightbox .small-img-container {
+.lightbox .small-img-container, .lightbox-mobile .small-img-container {
     justify-content: space-between;
     margin-top: 1.5rem;
     padding: 0 3rem;
 }
 
-.lightbox .small-img-container img::after {
+.lightbox .small-img-container img::after, .lightbox-mobile .small-img-container img::after {
     content: "";
     display: block;
     height: 100%;
@@ -387,7 +407,7 @@ button:hover {
     background-color: #fff;
 }
 
-.lightbox>section>button {
+.lightbox>section>button, .lightbox-mobile>section>button {
     margin-left: auto;
     background: url('icon-close.svg') no-repeat center;
     background-size: contain;
@@ -424,3 +444,4 @@ button:hover {
 .btn-next:hover {
     background: url('icon-next-hover.svg') no-repeat center, white;
 }
+
