@@ -24,7 +24,7 @@
             <button
                 onclick={() => showPrev()}
                 aria-label="previous"
-                class="btn-prev"
+                class={mobileView ? "btn-prev lb" : "btn-prev"}
             ></button>
             <input
                 type="image"
@@ -37,7 +37,7 @@
             <button
                 onclick={() => showNext()}
                 aria-label="next"
-                class="btn-next"
+                class={mobileView ? "btn-next lb" : "btn-next"}
             ></button>
         </div>
         {#if !mobileView}

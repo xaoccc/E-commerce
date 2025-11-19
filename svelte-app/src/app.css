@@ -387,10 +387,13 @@ button:hover {
 
 .lightbox .main-img,
 .lightbox .small-img-container,
-.lightbox-mobile .main-img,
 .lightbox-mobile .small-img-container {
     width: 100%;
     border-radius: 1rem;
+}
+
+.lightbox-mobile .main-img {
+    width: 100%;
 }
 
 .lightbox .small-img-container, .lightbox-mobile .small-img-container {
@@ -432,9 +435,17 @@ button:hover {
     left: -2rem;
 }
 
+.btn-prev.lb {
+    left: 2rem;
+}
+
 .btn-next {
     background: url('icon-next.svg') no-repeat center, white;
     right: -2rem;
+}
+
+.btn-next.lb {
+    right: 2rem;
 }
 
 .btn-prev:hover {
