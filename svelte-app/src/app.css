@@ -304,6 +304,7 @@ button:hover {
     border-radius: 0.75rem;
     width: 22.5rem;
     background-color: #fff;
+    z-index: 1000;
 }
 
 .cart hr {
@@ -369,11 +370,12 @@ button:hover {
     flex-direction: column;
 }
 
-.lightbox>section, .lightbox-mobile>section {
+.lightbox>section,
+.lightbox-mobile>section {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;   
+    flex-direction: column;
 }
 
 .lightbox>section {
@@ -396,13 +398,15 @@ button:hover {
     width: 100%;
 }
 
-.lightbox .small-img-container, .lightbox-mobile .small-img-container {
+.lightbox .small-img-container,
+.lightbox-mobile .small-img-container {
     justify-content: space-between;
     margin-top: 1.5rem;
     padding: 0 3rem;
 }
 
-.lightbox .small-img-container img::after, .lightbox-mobile .small-img-container img::after {
+.lightbox .small-img-container img::after,
+.lightbox-mobile .small-img-container img::after {
     content: "";
     display: block;
     height: 100%;
@@ -410,7 +414,8 @@ button:hover {
     background-color: #fff;
 }
 
-.lightbox>section>button, .lightbox-mobile>section>button {
+.lightbox>section>button,
+.lightbox-mobile>section>button {
     margin-left: auto;
     background: url('icon-close.svg') no-repeat center;
     background-size: contain;
@@ -449,10 +454,49 @@ button:hover {
 }
 
 .btn-prev:hover {
-    background: url('icon-previous-hover.svg') no-repeat center, white;
+    background: url('/icon-previous-hover.svg') no-repeat center, white;
 }
 
 .btn-next:hover {
-    background: url('icon-next-hover.svg') no-repeat center, white;
+    background: url('/icon-next-hover.svg') no-repeat center, white;
 }
 
+/* Dropdown menu */
+.dropdown-btn {
+    height: 1.5rem;
+    width: 2rem;
+}
+
+.dropdown-btn.open {
+    background: url(/icon-menu.svg) no-repeat center;
+    margin: 0 1rem;
+    position: relative;
+    left: 1rem;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+    html {
+        font-size: 12px;
+    }
+
+    main {
+        gap: 2rem;
+    }
+
+    main.mobile {
+        padding: 0;
+    }
+
+    main>section:nth-child(2) {
+        margin: 0 1.5rem;
+    }
+
+    .cart {
+        position: absolute;
+        right: 0;
+        top: 6rem;
+        width: calc(100% - 2rem);
+        margin: 0 1rem;
+    }
+}

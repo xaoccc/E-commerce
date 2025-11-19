@@ -16,10 +16,12 @@
 
 <section class={mobileView ? "lightbox-mobile" : "lightbox"}>
     <section class="g1">
-        <button
-            onclick={() => (showLightBox = !showLightBox)}
-            aria-label="close button"
-        ></button>
+        {#if !mobileView}
+            <button
+                onclick={() => (showLightBox = !showLightBox)}
+                aria-label="close button"
+            ></button>
+        {/if}
         <div class="row main-img-container">
             <button
                 onclick={() => showPrev()}

@@ -10,6 +10,7 @@
     let showLightBox = $state(false);
     let mobileView = $state(false);
     let width = $state(0);
+    let showMenu = $state(false);
 
     // Reactive window size check
     onMount(() => {
@@ -72,16 +73,33 @@
 {/if}
 <header class="row spread">
     <div class="left row g2">
+        {#if mobileView}
+            <button onclick={() => showMenu = !showMenu} class="dropdown-btn open" aria-label="dropdown button"
+            ></button>
+        {/if}
+        {#if showMenu}
+            <nav>
+                <ul class="g2">
+                    <li><a href=".">Collections</a></li>
+                    <li><a href=".">Men</a></li>
+                    <li><a href=".">Women</a></li>
+                    <li><a href=".">About</a></li>
+                    <li><a href=".">Contact</a></li>
+                </ul>
+            </nav>
+        {/if}
         <img src="logo.svg" alt="logo" class="logo" />
-        <nav>
-            <ul class="row g2">
-                <li><a href=".">Collections</a></li>
-                <li><a href=".">Men</a></li>
-                <li><a href=".">Women</a></li>
-                <li><a href=".">About</a></li>
-                <li><a href=".">Contact</a></li>
-            </ul>
-        </nav>
+        {#if !mobileView}
+            <nav>
+                <ul class="row g2">
+                    <li><a href=".">Collections</a></li>
+                    <li><a href=".">Men</a></li>
+                    <li><a href=".">Women</a></li>
+                    <li><a href=".">About</a></li>
+                    <li><a href=".">Contact</a></li>
+                </ul>
+            </nav>
+        {/if}
     </div>
     <div class="right row g2">
         <button
@@ -140,7 +158,7 @@
             <div class="discount">{currentProduct.discount * 100}%</div>
         </div>
         <div class="old-price">${currentProduct.old_price.toFixed(2)}</div>
-        <div class="cart-section {mobileView ? "col" : "row"} g1">
+        <div class="cart-section {mobileView ? 'col' : 'row'} g1">
             <div class="row g1">
                 <button
                     onclick={() => removeProduct()}
