@@ -74,20 +74,31 @@
 <header class="row spread">
     <div class="left row g2">
         {#if mobileView}
-            <button onclick={() => showMenu = !showMenu} class="dropdown-btn open" aria-label="dropdown button"
-            ></button>
-        {/if}
-        {#if showMenu}
             <nav>
-                <ul class="g2">
-                    <li><a href=".">Collections</a></li>
-                    <li><a href=".">Men</a></li>
-                    <li><a href=".">Women</a></li>
-                    <li><a href=".">About</a></li>
-                    <li><a href=".">Contact</a></li>
-                </ul>
+                <button
+                    onclick={() => (showMenu = true)}
+                    class="dropdown-btn open"
+                    aria-label="open dropdown button"
+                ></button>
+                {#if showMenu}
+                    <div class="dropdown-container">
+                        <button
+                            onclick={() => (showMenu = false)}
+                            class="dropdown-btn close"
+                            aria-label="close dropdown button"
+                        ></button>
+                        <ul class="g2">
+                            <li><a href=".">Collections</a></li>
+                            <li><a href=".">Men</a></li>
+                            <li><a href=".">Women</a></li>
+                            <li><a href=".">About</a></li>
+                            <li><a href=".">Contact</a></li>
+                        </ul>
+                    </div>
+                {/if}
             </nav>
         {/if}
+
         <img src="logo.svg" alt="logo" class="logo" />
         {#if !mobileView}
             <nav>

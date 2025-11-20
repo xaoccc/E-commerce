@@ -75,6 +75,10 @@ header {
     border-bottom: 1px solid #E9E9E9;
 }
 
+nav {
+    position: relative;
+}
+
 nav>ul a {
     color: hsl(219, 9%, 45%);
     position: relative;
@@ -91,7 +95,7 @@ nav>ul a::after {
     width: 100%;
     background-color: hsl(26, 100%, 55%);
     position: absolute;
-    top: calc(4rem - 2px);
+    top: 4.375rem;
 }
 
 nav>ul a:hover::after {
@@ -474,6 +478,12 @@ button:hover {
     left: 1rem;
 }
 
+.dropdown-btn.close {
+    background: url(/icon-close.svg) no-repeat center;
+    margin: 1rem 1rem 2rem;
+    filter: grayscale(1);
+}
+
 /* Responsive */
 @media screen and (max-width: 1024px) {
     html {
@@ -498,5 +508,24 @@ button:hover {
         top: 6rem;
         width: calc(100% - 2rem);
         margin: 0 1rem;
+    }
+
+    .dropdown-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #fff;
+        padding: 2rem;
+        z-index: 1001;        
+    }
+
+    .dropdown-container > ul > li  {
+        padding: 1rem;
+    }
+
+    .dropdown-container > ul > li > a{
+        color: #000 !important;
+        font-size: 1.25rem;
+        font-weight: 700;
     }
 }
