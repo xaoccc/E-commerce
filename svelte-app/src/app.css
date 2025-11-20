@@ -374,6 +374,14 @@ button:hover {
     flex-direction: column;
 }
 
+.overlay {
+    background-color: hsla(0, 0%, 0%, 75%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
 .lightbox>section,
 .lightbox-mobile>section {
     display: flex;
@@ -480,7 +488,7 @@ button:hover {
 
 .dropdown-btn.close {
     background: url(/icon-close.svg) no-repeat center;
-    margin: 1rem 1rem 2rem;
+    margin: 1rem 0 2rem;
     filter: grayscale(1);
 }
 
@@ -514,13 +522,15 @@ button:hover {
         position: fixed;
         top: 0;
         left: 0;
+        width: 60%;
+        height: 100vh;
         background: #fff;
         padding: 2rem;
         z-index: 1001;        
     }
 
-    .dropdown-container > ul > li  {
-        padding: 1rem;
+    .dropdown-container > ul  {
+        flex-direction: column;
     }
 
     .dropdown-container > ul > li > a{

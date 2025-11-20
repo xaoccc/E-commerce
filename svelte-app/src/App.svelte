@@ -1,6 +1,7 @@
 <script lang="ts">
     import Cart from "./lib/Cart.svelte";
     import Lightbox from "./lib/Lightbox.svelte";
+    import Menu from "./lib/Menu.svelte";
     import { onMount } from "svelte";
     import data from "./data/db.json";
     let products = $state(data);
@@ -71,6 +72,9 @@
 {#if showLightBox && !mobileView}
     <Lightbox bind:showLightBox {currentProduct} />
 {/if}
+{#if showMenu}
+    <div class="overlay"></div>
+{/if}
 <header class="row spread">
     <div class="left row g2">
         {#if mobileView}
@@ -87,13 +91,7 @@
                             class="dropdown-btn close"
                             aria-label="close dropdown button"
                         ></button>
-                        <ul class="g2">
-                            <li><a href=".">Collections</a></li>
-                            <li><a href=".">Men</a></li>
-                            <li><a href=".">Women</a></li>
-                            <li><a href=".">About</a></li>
-                            <li><a href=".">Contact</a></li>
-                        </ul>
+                        <Menu />
                     </div>
                 {/if}
             </nav>
@@ -102,13 +100,7 @@
         <img src="logo.svg" alt="logo" class="logo" />
         {#if !mobileView}
             <nav>
-                <ul class="row g2">
-                    <li><a href=".">Collections</a></li>
-                    <li><a href=".">Men</a></li>
-                    <li><a href=".">Women</a></li>
-                    <li><a href=".">About</a></li>
-                    <li><a href=".">Contact</a></li>
-                </ul>
+                <Menu />
             </nav>
         {/if}
     </div>
