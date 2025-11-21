@@ -39,6 +39,45 @@ li {
     list-style-type: none;
 }
 
+/* Common */
+header,
+main {
+    max-width: 69.375rem;
+    margin: 0 auto;
+}
+
+header {
+    position: relative;
+    align-items: center;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid #E9E9E9;
+}
+
+main {
+    padding: 3rem;
+    gap: 7rem;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 2.75rem;
+    margin: 1.1rem 0 2.35rem;
+    line-height: 1.1;
+}
+
+h2 {
+    text-transform: uppercase;
+    color: hsl(219, 9%, 45%);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+/* My classes */
 .row {
     display: flex;
     flex-direction: row;
@@ -61,23 +100,7 @@ li {
     gap: 2rem
 }
 
-header,
-main {
-    max-width: 69.375rem;
-
-}
-
-header {
-    position: relative;
-    align-items: center;
-    margin: 0 auto;
-    padding: 2.5rem 0;
-    border-bottom: 1px solid #E9E9E9;
-}
-
-nav {
-    position: relative;
-}
+/* Navigation */
 
 nav>ul a {
     color: hsl(219, 9%, 45%);
@@ -91,7 +114,7 @@ nav>ul a:hover {
 nav>ul a::after {
     content: "";
     display: none;
-    height: 4px;
+    height: 0.25rem;
     width: 100%;
     background-color: hsl(26, 100%, 55%);
     position: absolute;
@@ -139,12 +162,6 @@ nav>ul a:hover::after {
     color: #fff;
 }
 
-main {
-    margin: 0 auto;
-    padding: 3rem;
-    gap: 7rem;
-}
-
 main.mobile {
     padding: 3rem 0;
 }
@@ -159,7 +176,7 @@ main>section>input {
 }
 
 main>section .row.spread {
-    margin-top: 2.25rem;
+    margin-block-start: 2.25rem;
 }
 
 .small-img-container>img {
@@ -204,21 +221,6 @@ main>section:last-child {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-h2 {
-    text-transform: uppercase;
-    color: hsl(219, 9%, 45%);
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-}
-
-h1 {
-    font-weight: 700;
-    font-size: 2.75rem;
-    margin: 1.1rem 0 2.35rem;
-    line-height: 1.1;
 }
 
 main>section:last-child>p {
@@ -290,10 +292,6 @@ main>section:last-child>p {
     background: url('/icon-plus.svg') no-repeat center;
 }
 
-button:hover {
-    cursor: pointer;
-}
-
 .add-cart:hover {
     opacity: 0.7;
 }
@@ -301,7 +299,7 @@ button:hover {
 /* Cart */
 .cart {
     position: absolute;
-    right: -5rem;
+    right: 0;
     top: 5rem;
     padding: 1rem 0;
     box-shadow: 0px 13px 20px 7px hsla(0, 0%, 0%, 25%);
@@ -413,7 +411,7 @@ button:hover {
 .lightbox .small-img-container,
 .lightbox-mobile .small-img-container {
     justify-content: space-between;
-    margin-top: 1.5rem;
+    margin-block-start: 1.5rem;
     padding: 0 3rem;
 }
 
@@ -493,7 +491,7 @@ button:hover {
 }
 
 /* Responsive */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 64em) {
     html {
         font-size: 12px;
     }
@@ -518,23 +516,26 @@ button:hover {
         margin: 0 1rem;
     }
 
-    .dropdown-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 60%;
-        height: 100vh;
-        background: #fff;
-        padding: 2rem;
-        z-index: 1001;        
+    .remove-item {
+        height: 2rem;
     }
 
-    .dropdown-container > ul  {
+    .dropdown-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        background: #fff;
+        padding: 2rem 30% 2rem 2rem;
+        z-index: 1001;
+    }
+
+    .dropdown-container>ul {
         flex-direction: column;
     }
 
-    .dropdown-container > ul > li > a{
-        color: #000 !important;
+    .dropdown-container>ul>li>a {
+        color: #000;
         font-size: 1.25rem;
         font-weight: 700;
     }

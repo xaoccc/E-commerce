@@ -20,6 +20,7 @@
             <button
                 onclick={() => (showLightBox = !showLightBox)}
                 aria-label="close button"
+                type="button"
             ></button>
         {/if}
         <div class="row main-img-container">
@@ -27,6 +28,7 @@
                 onclick={() => showPrev()}
                 aria-label="previous"
                 class={mobileView ? "btn-prev lb" : "btn-prev"}
+                type="button"
             ></button>
             <input
                 type="image"
@@ -40,6 +42,7 @@
                 onclick={() => showNext()}
                 aria-label="next"
                 class={mobileView ? "btn-next lb" : "btn-next"}
+                type="button"
             ></button>
         </div>
         {#if !mobileView}

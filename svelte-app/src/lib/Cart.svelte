@@ -46,9 +46,10 @@
                     aria-label="remove item"
                     class="remove-item"
                     onclick={() => removeItem(product)}
+                    type="button"
                 ></button>
             </div>
-            <button class="checkout-btn">Chechout</button>
+            <button class="checkout-btn" type="button">Chechout</button>
         {/each}
     {:else}
         <p>Your cart is empty</p>

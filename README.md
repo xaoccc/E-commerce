@@ -1,6 +1,6 @@
 # Frontend Mentor - Weather app solution
 
-This is a solution to the [Weather app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/weather-app-K1FhddVm49). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [E-commerce product page on Frontend Mentor](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
 ## Table of contents
 
@@ -34,7 +34,7 @@ Users should be able to:
 ### Links
 
 - GitHub URL: [https://github.com/xaoccc/E-commerce](https://github.com/xaoccc/E-commerce)
-- Live Site URL: []()
+- Live Site URL: [https://daipari.netlify.app/](https://daipari.netlify.app/)
 
 ## My process
 

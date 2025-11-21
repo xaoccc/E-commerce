@@ -83,6 +83,7 @@
                     onclick={() => (showMenu = true)}
                     class="dropdown-btn open"
                     aria-label="open dropdown button"
+                    type="button"
                 ></button>
                 {#if showMenu}
                     <div class="dropdown-container">
@@ -90,6 +91,7 @@
                             onclick={() => (showMenu = false)}
                             class="dropdown-btn close"
                             aria-label="close dropdown button"
+                            type="button"
                         ></button>
                         <Menu />
                     </div>
@@ -109,6 +111,7 @@
             onclick={() => showCart()}
             aria-label="cart button"
             class="cart-btn"
+            type="button"
         >
             <small>{cart[currentProduct.id]}</small>
         </button>
@@ -167,12 +170,14 @@
                     onclick={() => removeProduct()}
                     class="remove-product"
                     aria-label="Remove product"
+                    type="button"
                 ></button>
                 <p>{currentProduct.qty ? currentProduct.qty : "0"}</p>
                 <button
                     onclick={() => addProduct()}
                     class="add-product"
                     aria-label="Add product"
+                    type="button"
                 ></button>
             </div>
             <button
