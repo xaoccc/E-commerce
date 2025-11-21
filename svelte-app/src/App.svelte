@@ -123,17 +123,18 @@
 </header>
 <main class={mobileView ? "col mobile" : "row"}>
     <section>
-        {console.log(mobileView)}
         {#if !mobileView}
-            <input
-                type="image"
-                src={currentProduct.bigImages[imgNum]}
-                onclick={() => (showLightBox = !showLightBox)}
-                alt={`${currentProduct.title} Big Image`}
-                name="saveForm"
-                class="main-img"
+            <button
+                type="button"
                 id="saveForm"
-            />
+                onclick={() => (showLightBox = !showLightBox)}
+            >
+                <img
+                class="main-img"
+                    src={currentProduct.bigImages[imgNum]}
+                    alt={`${currentProduct.title} Big Image`}
+                />
+            </button>
             <div class="row spread small-img-container">
                 {#each currentProduct.smallImages as smallImg, i}
                     <img
@@ -182,8 +183,10 @@
             </div>
             <button
                 class="add-cart"
-                onclick={() => addToCart(currentProduct.id)}>Add to cart</button
-            >
+                onclick={() => addToCart(currentProduct.id)}
+                type="button"
+                >Add to cart
+            </button>
         </div>
     </section>
 </main>

@@ -30,14 +30,17 @@
                 class={mobileView ? "btn-prev lb" : "btn-prev"}
                 type="button"
             ></button>
-            <input
-                type="image"
-                src={currentProduct.bigImages[imgNum]}
-                alt={`${currentProduct.title} Big Image`}
-                name="saveForm"
-                class="main-img"
+            <button
+                type="button"
                 id="saveForm"
-            />
+                onclick={() => (showLightBox = !showLightBox)}
+            >
+                <img
+                class="main-img"
+                    src={currentProduct.bigImages[imgNum]}
+                    alt={`${currentProduct.title} Big Image`}
+                />
+            </button>
             <button
                 onclick={() => showNext()}
                 aria-label="next"
